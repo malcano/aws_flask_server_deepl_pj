@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import config
 
+
 app = Flask(__name__)
 
 cur = config.conn.cursor()
@@ -15,6 +16,10 @@ def kkot():
 @app.route('/result')
 def result():
     return 'hello'
+
+@app.route('/predict', methods=['POST'])
+def running():
+    req = request.get_data()
 
 
 if __name__ == '__main__':
