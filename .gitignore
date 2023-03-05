@@ -4,4 +4,4 @@
 *.jpg
 *.xlsx
 *.xls
-config.py
+/Flask/config.py
