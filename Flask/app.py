@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import config
 import model
 
+md = model.model()
 
 app = Flask(__name__)
 
@@ -14,17 +15,23 @@ cur = config.conn.cursor()
 @app.route("/")
 def kkot():
     return render_template("index.html")
-@app.route('/result')
-def result():
-    return 'hello'
+@app.route('/result/<input>')
+def result(input):
+    return md.sentiment_predict(input)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'GET'])
 def predict():
     if request.method == 'POST':
-        temp = request.form['num']
+        input = request.form['input']
+        print(input)
+        return redirect(url_for('result', input=input))
     else:
         temp = None
-    return redirect(url_for('kkot',num=temp))
+    return redirect(url_for('predict',input=input))
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("page_not_found.html"), 400
