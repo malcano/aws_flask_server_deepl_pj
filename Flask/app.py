@@ -9,4 +9,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='13.209.236.3')
