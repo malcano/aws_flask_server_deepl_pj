@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import config
+import model
 
 
 app = Flask(__name__)
@@ -18,9 +19,12 @@ def result():
     return 'hello'
 
 @app.route('/predict', methods=['POST'])
-def running():
-    req = request.get_data()
-
+def predict():
+    if request.method == 'POST':
+        temp = request.form['num']
+    else:
+        temp = None
+    return redirect(url_for('kkot',num=temp))
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
