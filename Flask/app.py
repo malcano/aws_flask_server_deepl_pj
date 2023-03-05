@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import config
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ cur = config.conn.cursor()
 # conn.commit()
 
 @app.route("/")
-def hello():
+def kkot():
     return render_template("index.html")
 @app.route('/result')
 def result():
