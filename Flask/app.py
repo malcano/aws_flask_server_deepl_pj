@@ -70,19 +70,24 @@ def result(input):#input: 사용자로부터 받는 메세지
 @app.route('/finalfisrt/<input>')
 def finalfirst(input):
 
-    # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
+    # get first flower data from db (select emotion from flower_result where id = input)
+    # get first flower data from db (select situation from flower_result where id = input)
 
 
+    # flower_satisfaction database: insert id, chosen_flower, satisfaction
+    #
 
-    session.clear()
+
     return render_template("final_page.html")
 
 
 @app.route('/finalsecond/<input>')
 def finalsecond(input):
-    # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
+    # get first flower data from db (select emotion from flower_result where id = input)
+    # get first flower data from db (select situation from flower_result where id = input)
 
-    session.clear()
+    # flower_satisfaction database: insert id, chosen_flower, satisfaction
+    #
     return render_template("final_page.html")
 
 
