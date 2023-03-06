@@ -38,8 +38,8 @@ def result(input):#input: 사용자로부터 받는 메세지
 
 
     first_flower = list(rec_flower.keys())[0]
-    second_flower = list(rec_flower.values())[0]
-    first_flower_explain = list(rec_flower.keys())[1]
+    second_flower = list(rec_flower.keys())[1]
+    first_flower_explain = list(rec_flower.values())[0]
     second_flower_explain = list(rec_flower.values())[1]
 
     #
@@ -82,18 +82,20 @@ def finalfirst(input):
     print(f"emotion:{situation}")
     chosen_flower = getflower.fromFlowerList(emotion,situation)
     flower = list(chosen_flower.keys())[0]
-    explain = list(chosen_flower.keys())[1]
+    explain = list(chosen_flower.values())[0]
 
 
     # get first flower data from db (select emotion from flower_result where id = input)
     # get first flower data from db (select situation from flower_result where id = input)
 
 
-    # flower_satisfaction database: insert id, chosen_flower, satisfaction
+    # flower_satisfaction database: insert id, chosen_flower
     #
+    cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
+    config.conn.commit()
     cur.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain)
+    return render_template("final_page.html", flower = flower, explain = explain, input=input)
 
 
 @app.route('/finalsecond/<input>')
@@ -111,14 +113,16 @@ def finalsecond(input):
 
     chosen_flower = getflower.fromFlowerList(emotion,situation)
 
-    flower = list(chosen_flower.values())[0]
+    flower = list(chosen_flower.keys())[1]
     explain = list(chosen_flower.values())[1]
 
     # flower_satisfaction database: insert id, chosen_flower, satisfaction
     #
+    cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
+    config.conn.commit()
     cur.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain)
+    return render_template("final_page.html", flower = flower, explain = explain, input=input)
 
 
 @app.route('/predict', methods=['POST', 'GET'])
@@ -139,6 +143,24 @@ def save(user_id):
     elif input == 'second':
         return redirect(url_for('finalsecond',input=user_id))
 
+@app.route('/goodfeedback/<input>', methods = ['POST'])
+def goodfeedback(input):
+    #update feedback to db
+    cur = config.conn.cursor()
+    update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 1  WHERE id = %s'
+    cur.execute(update_SQL, input)
+    cur.close()
+
+    return redirect(url_for('kkot'))
+
+@app.route('/badfeedback/<input>', methods = ['POST'])
+def badfeedback(input):
+    #update feedback to db
+    cur = config.conn.cursor()
+    update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 0  WHERE id = %s'
+    cur.execute(update_SQL, input)
+    cur.close()
+    return redirect(url_for('kkot'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

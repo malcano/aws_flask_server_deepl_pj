@@ -11,7 +11,23 @@
 대충 설명과 이미지가 들어갈 예정이라는 뜻
 <br><br>
 
-<h1>구매하러 가기</h1>
+<h1>이 추천 평가하기</h1>
+<form action="/goodfeedback/{{input}}" method = "POST" style="display:inline-flex">
+        <input type="submit" value="좋아요!" onclick="doAction()"/></p>
+  <script>
+    function doAction() {
+      alert("평가해주셔서 감사힙니다 :)");
+    }
+  </script>
+</form>
+<form action="/badfeedback/{{input}}" method = "POST" style="display:inline-flex">
+        <input type="submit" value="별로예요.." onclick="doAction()"/></p>
+  <script>
+    function doAction() {
+      alert("평가해주셔서 감사힙니다 :)");
+    }
+  </script>
+</form>
 
 </body>
 </html>
