@@ -1,7 +1,13 @@
 const carouselText = [
-    { text: "Apple", color: "red" },
-    { text: "Orange", color: "orange" },
-    { text: "Lemon", color: "yellow" },
+    { text: "국화", color: "coral" },
+    { text: "아카시아", color: "seagreen" },
+    { text: "델피니움", color: "lavender" },
+    { text: "스타티스", color: "hotpink" },
+    { text: "아네모네", color: "mediumpurple" },
+    { text: "프리지아", color: "white" },
+    { text: "장미", color: "red" },
+    { text: "유채", color: "yellow" },
+    
   ];
   
   window.onload = function () {

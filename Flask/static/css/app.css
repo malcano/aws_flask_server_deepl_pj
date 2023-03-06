@@ -1,36 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumBaReunJeongSin.css"'); 
   body {
+    text-align: center;
     flex-direction: column;
     background-color: #2b2b2b;
     color: white;
-    font-size: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Darker Grotesque', sans-serif; }
-    body .typing-container {
-      display: flex;
-      justify-content: center;
-      align-items: center; }
-      body .typing-container #feature-text {
-        margin-left: 8px; }
-        body .typing-container .input-cursor {
-          display: inline-block;
-          width: 2px;
-          height: 42px;
-          background-color: white;
-          margin-left: 8px;
-          animation: blink 0.6s linear infinite alternate; }
-    body {
-      @keyframes blink {
-        0% {
-          opacity: 1;     }
-          40% {
-            opacity: 1;     }
-            60% {
-              opacity: 0;     }
-              100% {
-                opacity: 0;     }
+    font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif; }
+    body .head_div {
+      font-size: 3rem; }
+      body .typing-container {
+        display: block;
+        justify-content: center;
+        align-items: center; }
+        body .typing-container .sentence {
+          font-size: 5rem; }
+          body .typing-container #feature-text {
+            margin-left: 8px;
+            font-size: 5rem; }
+            body .typing-container .input-cursor {
+              display: inline-block;
+              width: 2px;
+              height: 5rem;
+              background-color: white;
+              margin-left: 8px;
+              animation: blink 0.6s linear infinite alternate; }
+    body input[type="text"] {
+      border: 0.1rem solid #ddd;
+      border-radius: 4px;
+      padding: 1rem;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      width: 90%;
+      margin: 2rem auto;
+      background-color: #f6f6f6;
+      color: #222;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; }
+      body input[type="text"]:focus {
+        outline: none;
+        border-color: #0078d4;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); }
+        body input[type="submit"] {
+          background-color: #0078d4;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          padding: 1rem 2rem;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out; }
+          body input[type="submit"]:hover {
+            background-color: #005a9e; }
+            body {
+              @keyframes blink {
+                0% {
+                  opacity: 1;     }
+                  40% {
+                    opacity: 1;     }
+                    60% {
+                      opacity: 0;     }
+                      100% {
+                        opacity: 0;     }
   }
 }
