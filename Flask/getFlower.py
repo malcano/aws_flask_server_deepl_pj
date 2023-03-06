@@ -145,3 +145,22 @@ class getFlower:
           return '슬픔'
         elif sentiment_number == 4:
           return '기쁨'
+    def getCircumstance(self, circumstance_number):
+        if circumstance_number == 0:
+          return '대인관계'
+        elif circumstance_number == 1:
+          return '진로,취업,직장'
+        elif circumstance_number == 2:
+          return '연애,결혼,출산'
+        elif circumstance_number == 3:
+          return '가족관계'
+        elif circumstance_number == 4:
+          return '학업 및 진로'
+        elif circumstance_number == 5:
+          return '학교폭력/따돌림'
+        elif circumstance_number == 6:
+          return '재정,은퇴,노후준비'
+        elif circumstance_number == 7:
+          return '직장, 업무 스트레스'
+        elif circumstance_number == 8:
+          return '건강,죽음'
