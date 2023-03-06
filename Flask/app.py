@@ -31,7 +31,7 @@ def result(input):#input: 사용자로부터 받는 메세지
     sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(sentiment) + \
                "circumstance predict: "+getflower.getCircumstance(circumstance) + '\n\n' + "당신에게 두 꽃을 추천드립니다.\n\n"+\
                 list(rec_flower[0].keys())[0]+": " + list(rec_flower[0].values())[0] + "\n"+ \
-                list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0] + " unique_id : " + str(n_unique)
+                list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0] + " unique_id : " + str(user_id)
 
     # DB INSERT ID, SENTENCE, EMOTION, SITUATIOn
 
