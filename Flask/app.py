@@ -3,7 +3,7 @@ import config
 import model, getFlower
 
 md = model.model()
-getflower = getFlower()
+getflower = getFlower.getFlower()
 
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):
-    sentence = "input message: " + input +"\nsentiment predict: "+ md.sentiment_predict(input) + "circumstance predict: "+md.circumstance_predict(input)
+    sentence = "input message: " + str(input) +"\nsentiment predict: "+ str(md.sentiment_predict(input)) + "circumstance predict: "+str(md.circumstance_predict(input))
     return sentence
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
