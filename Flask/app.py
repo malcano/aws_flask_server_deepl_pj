@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_assets import Environment, Bundle
 import config
-import model, getFlower, create_id
+import model, getFlower, create_id, uuid
 
 md = model.model()
 id = create_id.id()
@@ -23,8 +23,6 @@ cur = config.conn.cursor()
 
 @app.route("/")
 def kkot():
-    user_id = id.newID()
-    session['user_id'] = user_id
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
@@ -34,9 +32,10 @@ def result(input):#input: 사용자로부터 받는 메세지
     sentiment = int(md.sentiment_predict(input))
     circumstance = int(md.circumstance_predict(input))
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like {"flower1":"sentence","flower2":"sentence}
-    user_id = session.get("user_id")
+    user_id = id.newID()
 
     #need to parse to select_page.html
+
 
     first_flower = list(rec_flower.keys())[0]
     second_flower = list(rec_flower.values())[0]
@@ -57,6 +56,9 @@ def result(input):#input: 사용자로부터 받는 메세지
     #             list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0] + " unique_id : " + str(user_id)
 
     # DB INSERT ID, SENTENCE, EMOTION, SITUATION
+    print(f"user id: {user_id} sentence: {sentence} sentiment: {sentiment} circumstance: {circumstance}")
+    cur.execute("INSERT INTO flower_result (id,sentence,emotion,situation) VALUES (%s,%s,%s,%s)", (user_id,sentence,sentiment,circumstance))
+    config.conn.commit()
 
     #need to parse img link
     return render_template("select_page.html", \
@@ -80,7 +82,6 @@ def final(input):
 def predict():
     if request.method == 'POST':
         input = request.form['input']
-        n_unique = id.newID()
         print(input)
         return redirect(url_for('result', input=input))
     else:
