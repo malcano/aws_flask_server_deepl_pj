@@ -87,12 +87,15 @@ def finalfirst(input):
 
     # get first flower data from db (select emotion from flower_result where id = input)
     # get first flower data from db (select situation from flower_result where id = input)
-
-
+    select_query = "SELECT COUNT(*) FROM table_name WHERE id=%s"
+    cur.execute(select_query, (input,))
+    result =cur.fetchone()
     # flower_satisfaction database: insert id, chosen_flower
     #
-    cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
-    config.conn.commit()
+    if result[0] == 0:
+        cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
+    else:
+        cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s"(flower, input))
     cur.close()
 
     return render_template("final_page.html", flower = flower, explain = explain, input=input)
@@ -118,8 +121,15 @@ def finalsecond(input):
 
     # flower_satisfaction database: insert id, chosen_flower, satisfaction
     #
-    cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
-    config.conn.commit()
+    select_query = "SELECT COUNT(*) FROM table_name WHERE id=%s"
+    cur.execute(select_query, (input,))
+    result =cur.fetchone()
+    # flower_satisfaction database: insert id, chosen_flower
+    #
+    if result[0] == 0:
+        cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
+    else:
+        cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s"(flower, input))
     cur.close()
 
     return render_template("final_page.html", flower = flower, explain = explain, input=input)
