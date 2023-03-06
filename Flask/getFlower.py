@@ -130,8 +130,18 @@ class getFlower:
 
     def imglink(self, sentiment: int, circumstance: int):
         """
-
         :param sentiment:
         :param circumstance:
         :return:
         """
+    def getSentiment(self, sentiment_number):
+        if sentiment_number == 0:
+          return '불안'
+        elif sentiment_number == 1:
+          return '분노'
+        elif sentiment_number == 2:
+          return '상처'
+        elif sentiment_number == 3:
+          return '슬픔'
+        elif sentiment_number == 4:
+          return '기쁨'

@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
 import config
-import model
+import model, getFlower
 
 md = model.model()
+getflower = getFlower()
 
 app = Flask(__name__)
 
