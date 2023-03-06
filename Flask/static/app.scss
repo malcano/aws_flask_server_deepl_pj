@@ -1,25 +1,40 @@
 $black: #2b2b2b;
 @import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
-$size: 42px;
+@import url('https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumBaReunJeongSin.css"');
 
+$size: 5rem;
+$header_size: 3rem;
 body {
+  text-align: center;
   flex-direction: column;
   background-color: $black;
   color: white;
-  font-size: $size;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: 'Darker Grotesque', sans-serif;
-
+  font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif;
+  
+  .head_div {
+    font-size: $header_size;
+    // text-align: center;
+  }
+  .input_div {
+    // text-align: center;
+  }
   .typing-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    // text-align: center;
 
+    .sentence {
+      font-size: $size;
+    }
     #feature-text {
       margin-left: 8px;
+      font-size: $size;
     }
     .input-cursor {
       display: inline-block;
@@ -30,7 +45,52 @@ body {
       animation: blink .6s linear infinite alternate;
     }
   }
+  input[type="text"] {
+    border: 0.1rem solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    width: 90%;
+    margin: 2rem auto;
+    background-color: #f6f6f6;
+    color: #222;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
   
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #0078d4;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+  }
+  input[type="submit"] {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #005a9e;
+  }
+  // 미디어 쿼리를 사용하여 화면 크기에 따라 폰트 크기를 다르게 설정
+  // @media screen and (max-width: 1137px) {
+  //   $size: 2.4rem;
+  //   $header_size: 1.8rem;
+  // }
+  // @media screen and (max-width: 768px) {
+  //   $size: 2rem;
+  //   $header_size: 1rem;
+  // }
+  // @media screen and (max-width: 658px) {
+  //   $size: 1.2rem;
+  //   $header_size: 0.5rem;
+  // }
   @keyframes blink {
     0% {opacity: 1;}
     40% {opacity: 1;}
