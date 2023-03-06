@@ -24,23 +24,32 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
+    sentence = input
     sentiment = int(md.sentiment_predict(input))
     circumstance = int(md.circumstance_predict(input))
     user_id = session.get("user_id")
+
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like [{"flower1":"sentence"},{"flower2":"sentence}]
-    sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(sentiment) + \
-               "circumstance predict: "+getflower.getCircumstance(circumstance) + '\n\n' + "당신에게 두 꽃을 추천드립니다.\n\n"+\
+    # 둘 중 마음에 드는 꽃을 선택해주세요
+
+    sentence = "TEST MESSAGE: input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(sentiment) + \
+               "circumstance predict: "+getflower.getCircumstance(circumstance) + '\n\n' + "둘 중 더 마음에 드는 꽃을 선택해주세요.\n\n"+\
                 list(rec_flower[0].keys())[0]+": " + list(rec_flower[0].values())[0] + "\n"+ \
                 list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0] + " unique_id : " + str(user_id)
 
-    # DB INSERT ID, SENTENCE, EMOTION, SITUATIOn
+    # DB INSERT ID, SENTENCE, EMOTION, SITUATION
 
 
     return sentence
 @app.route('/val')
 def validation():
     user_id = session.get("user_id")
+
     # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
+
+
+
+    session.clear()
 
 
 @app.route('/predict', methods=['POST', 'GET'])
