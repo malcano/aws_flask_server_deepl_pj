@@ -66,9 +66,9 @@ def result(input):#input: 사용자로부터 받는 메세지
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
                            second_flower_explain = second_flower_explain,\
-                           user_id = user_id)
-@app.route('/final/<input>')
-def final(input):
+                           user_id = str(user_id))
+@app.route('/finalfisrt/<input>')
+def finalfirst(input):
 
     # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
 
@@ -77,7 +77,15 @@ def final(input):
     session.clear()
     return render_template("final_page.html")
 
-    
+
+@app.route('/finalsecond/<input>')
+def finalsecond(input):
+    # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
+
+    session.clear()
+    return render_template("final_page.html")
+
+
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
     if request.method == 'POST':
@@ -88,11 +96,13 @@ def predict():
         temp = None
     return redirect(url_for('predict',input=input))
 
-@app.route('/val', methods=['POST','GET'])
-def save():
+@app.route('/val/<user_id>', methods=['POST','GET'])
+def save(user_id):
     input = request.form['img_btn']
-    print(input)
-    return redirect(url_for('final',input=input))
+    if input == 'first':
+        return redirect(url_for('finalfirst',input=user_id))
+    elif input == 'second':
+        return redirect(url_for('finalsecond',input=user_id))
 
 
 if __name__ == '__main__':
