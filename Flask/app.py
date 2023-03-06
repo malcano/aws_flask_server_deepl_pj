@@ -33,14 +33,21 @@ def result(input):#input: 사용자로부터 받는 메세지
     sentence = input
     sentiment = int(md.sentiment_predict(input))
     circumstance = int(md.circumstance_predict(input))
-    rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like [{"flower1":"sentence"},{"flower2":"sentence}]
+    rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like {"flower1":"sentence","flower2":"sentence}
     user_id = session.get("user_id")
 
     #need to parse to select_page.html
-    first_flower = list(rec_flower[0].keys())[0]
-    second_flower = list(rec_flower[0].values())[0]
-    first_flower_explain = list(rec_flower[1].keys())[0]
-    second_flower_explain = list(rec_flower[1].values())[0]
+
+    first_flower = list(rec_flower.keys())[0]
+    second_flower = list(rec_flower.values())[0]
+    first_flower_explain = list(rec_flower.keys())[1]
+    second_flower_explain = list(rec_flower.values())[1]
+
+    #
+    # first_flower = list(rec_flower[0].keys())[0]
+    # second_flower = list(rec_flower[0].values())[0]
+    # first_flower_explain = list(rec_flower[1].keys())[0]
+    # second_flower_explain = list(rec_flower[1].values())[0]
 
     # 둘 중 마음에 드는 꽃을 선택해주세요
     #

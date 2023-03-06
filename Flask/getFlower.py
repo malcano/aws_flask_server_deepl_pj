@@ -79,7 +79,7 @@ class getFlower:
         """
         :param sentiment: sentiment code
         :param circumstance: circumstance code
-        :return: list[{'flower name1':'sentence'},{'flower name2':'sentence'}]
+        :return: dict: {'flower name1':'sentence','flower name2':'sentence'}
         """
         return self.flowerList[sentiment][circumstance]
 
