@@ -48,7 +48,11 @@ def result(input):#input: 사용자로부터 받는 메세지
     # DB INSERT ID, SENTENCE, EMOTION, SITUATION
 
 
-    return render_template("select_page.html")
+    return render_template("select_page.html", \
+                           first_flower = first_flower, \
+                           second_flower = second_flower, \
+                           first_flower_explain = first_flower_explain, \
+                           second_flower_explain = second_flower_explain)
 @app.route('/val')
 def validation():
     user_id = session.get("user_id")
