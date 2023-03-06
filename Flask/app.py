@@ -17,8 +17,8 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):
-    return md.sentiment_predict(input)
-
+    sentence = "input message: " + input +"\nsentiment predict: "+ md.sentiment_predict(input) + "circumstance predict: "+md.circumstance_predict(input)
+    return sentence
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
     if request.method == 'POST':
