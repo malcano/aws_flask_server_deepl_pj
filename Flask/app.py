@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_assets import Environment, Bundle
 import config
 import model, getFlower
 
@@ -6,7 +7,9 @@ md = model.model()
 getflower = getFlower.getFlower()
 
 app = Flask(__name__)
-
+assets = Environment(app)
+scss = Bundle('app.scss', filters='pyscss', output='css/app.css')
+assets.register('scss_all', scss)
 cur = config.conn.cursor()
 # we can use cur like below codes
 # cur.execute("쿼리문")
@@ -17,9 +20,10 @@ cur = config.conn.cursor()
 def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
+
 def result(input):
     sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(md.sentiment_predict(input)) + \
-               "circumstance predict: "+getflower.getCircumstance(md.sentiment_predict(input)) + '/n/n' + "당신에게 두 꽃을 추천드립니다./n/n"+\
+               "circumstance predict: "+getflower.getCircumstance(md.sentiment_predict(input)) + '/n/n' + "당신에게 두 꽃을 추천드립니다./n/n"
     return sentence
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
@@ -32,7 +36,7 @@ def predict():
     return redirect(url_for('predict',input=input))
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
 
 @app.errorhandler(404)
 def page_not_found(error):

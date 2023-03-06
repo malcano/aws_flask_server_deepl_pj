@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>TEST PAGE</title>
+    {% assets "scss_all" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+  {% endassets %}
 </head>
 <body>
+    <div class="typing-container">
+        <span id="sentence" class="sentence">Here, take this </span>
+        <span id="feature-text"></span>
+        <span class="input-cursor"></span>
+      </div>
 <h1>꽃을 추천해드립니다!</h1>
 <h2>나, 또는 사랑하는 이를 위한 메세지를 작성해주세요</h2>
 <h3>당신의 스토리에 맞는 꽃을 추천해드려요</h3>
@@ -18,6 +26,6 @@
     </p>
 </div>
 
-
+<script src="{{ url_for('static', filename='script.js') }}"></script>  
 </body>
 </html>

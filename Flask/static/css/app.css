@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap'); 
+  body {
+    flex-direction: column;
+    background-color: #2b2b2b;
+    color: white;
+    font-size: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Darker Grotesque', sans-serif; }
+    body .typing-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      body .typing-container #feature-text {
+        margin-left: 8px; }
+        body .typing-container .input-cursor {
+          display: inline-block;
+          width: 2px;
+          height: 42px;
+          background-color: white;
+          margin-left: 8px;
+          animation: blink 0.6s linear infinite alternate; }
+    body {
+      @keyframes blink {
+        0% {
+          opacity: 1;     }
+          40% {
+            opacity: 1;     }
+            60% {
+              opacity: 0;     }
+              100% {
+                opacity: 0;     }
+  }
+}
