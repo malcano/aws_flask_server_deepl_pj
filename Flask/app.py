@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_assets import Environment, Bundle
 import config
-import model, getFlower, create_id, uuid
+import model, getFlower, create_id
 
 md = model.model()
 print("create model instance!")
@@ -14,7 +14,6 @@ assets = Environment(app)
 scss = Bundle('app.scss', filters='pyscss', output='css/app.css')
 assets.register('scss_all', scss)
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
-cur = config.conn.cursor()
 # we can use cur like below codes
 # cur.execute("쿼리문")
 # cur.execute("INSERT INTO Details (name,email,comment,gender) VALUES (%s,%s,%s,%s)", (name,email,comment,gender))
@@ -26,6 +25,7 @@ def kkot():
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
     id = create_id.id()
+    cur = config.conn.cursor()
 
     #need to insert to Database
     sentence = input
@@ -59,6 +59,7 @@ def result(input):#input: 사용자로부터 받는 메세지
     print(f"user id: {user_id} sentence: {sentence} sentiment: {sentiment} circumstance: {circumstance}")
     cur.execute("INSERT INTO flower_result (id,sentence,emotion,situation) VALUES (%s,%s,%s,%s)", (str(user_id),sentence,sentiment,circumstance))
     config.conn.commit()
+    cur.close()
 
     #need to parse img link
     return render_template("select_page.html", \
@@ -69,6 +70,20 @@ def result(input):#input: 사용자로부터 받는 메세지
                            user_id = str(user_id))
 @app.route('/finalfisrt/<input>')
 def finalfirst(input):
+    cur = config.conn.cursor()
+
+    get_emotion_SQL = 'SELECT emotion FROM flower_result WHERE id = %s'
+    get_situation_SQL = 'SELECT situation FROM flower_result WHERE id = %s'
+    cur.execute(get_emotion_SQL, input)
+    emotion = cur.fetchall()[0][0]
+    print(f"emotion:{emotion}")
+    cur.execute(get_situation_SQL, input)
+    situation = cur.fetchall()[0][0]
+    print(f"emotion:{situation}")
+    chosen_flower = getflower.fromFlowerList(emotion,situation)
+    flower = list(chosen_flower.keys())[0]
+    explain = list(chosen_flower.keys())[1]
+
 
     # get first flower data from db (select emotion from flower_result where id = input)
     # get first flower data from db (select situation from flower_result where id = input)
@@ -76,19 +91,34 @@ def finalfirst(input):
 
     # flower_satisfaction database: insert id, chosen_flower, satisfaction
     #
+    cur.close()
 
-
-    return render_template("final_page.html")
+    return render_template("final_page.html", flower = flower, explain = explain)
 
 
 @app.route('/finalsecond/<input>')
 def finalsecond(input):
-    # get first flower data from db (select emotion from flower_result where id = input)
-    # get first flower data from db (select situation from flower_result where id = input)
+    cur = config.conn.cursor()
+
+    get_emotion_SQL = 'SELECT emotion FROM flower_result WHERE id = %s'
+    get_situation_SQL = 'SELECT situation FROM flower_result WHERE id = %s'
+    cur.execute(get_emotion_SQL, input)
+    emotion = cur.fetchall()[0][0]
+    print(f"emotion:{emotion}")
+    cur.execute(get_situation_SQL, input)
+    situation = cur.fetchall()[0][0]
+    print(f"emotion:{situation}")
+
+    chosen_flower = getflower.fromFlowerList(emotion,situation)
+
+    flower = list(chosen_flower.values())[0]
+    explain = list(chosen_flower.values())[1]
 
     # flower_satisfaction database: insert id, chosen_flower, satisfaction
     #
-    return render_template("final_page.html")
+    cur.close()
+
+    return render_template("final_page.html", flower = flower, explain = explain)
 
 
 @app.route('/predict', methods=['POST', 'GET'])
