@@ -4,7 +4,6 @@ import config
 import model, getFlower, create_id, uuid
 
 md = model.model()
-id = create_id.id()
 print("create model instance!")
 getflower = getFlower.getFlower()
 print("create getflower instance!")
@@ -26,6 +25,7 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
+    id = create_id.id()
 
     #need to insert to Database
     sentence = input
@@ -33,7 +33,7 @@ def result(input):#input: 사용자로부터 받는 메세지
     circumstance = int(md.circumstance_predict(input))
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like {"flower1":"sentence","flower2":"sentence}
     user_id = id.newID()
-
+    del id
     #need to parse to select_page.html
 
 
@@ -57,7 +57,7 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     # DB INSERT ID, SENTENCE, EMOTION, SITUATION
     print(f"user id: {user_id} sentence: {sentence} sentiment: {sentiment} circumstance: {circumstance}")
-    cur.execute("INSERT INTO flower_result (id,sentence,emotion,situation) VALUES (%s,%s,%s,%s)", (user_id,sentence,sentiment,circumstance))
+    cur.execute("INSERT INTO flower_result (id,sentence,emotion,situation) VALUES (%s,%s,%s,%s)", (str(user_id),sentence,sentiment,circumstance))
     config.conn.commit()
 
     #need to parse img link
