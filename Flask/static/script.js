@@ -1,7 +1,9 @@
 const carouselText = [
-    { text: "Apple", color: "red" },
-    { text: "Orange", color: "orange" },
-    { text: "Lemon", color: "yellow" },
+    { text: "북런던", color: "red" },
+    { text: "울버햄튼", color: "orange" },
+    { text: "비야레알", color: "yellow" },
+    { text: "첼시", color: "blue" },
+    { text: "맨체스터", color: "skyblue" },
   ];
   
   window.onload = function () {
