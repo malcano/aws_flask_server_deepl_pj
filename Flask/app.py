@@ -1,11 +1,15 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 import config
-import model, getFlower
+import model, getFlower, create_id
 
 md = model.model()
+id = create_id.id()
+print("create model instance!")
 getflower = getFlower.getFlower()
+print("create getflower instance!")
 
 app = Flask(__name__)
+app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 
 cur = config.conn.cursor()
 # we can use cur like below codes
@@ -15,21 +19,35 @@ cur = config.conn.cursor()
 
 @app.route("/")
 def kkot():
+    user_id = id.newID()
+    session['user_id'] = user_id
     return render_template("index.html")
 @app.route('/result/<input>')
-def result(input):
+def result(input, n_unique):#input: 사용자로부터 받는 메세지
     sentiment = int(md.sentiment_predict(input))
     circumstance = int(md.circumstance_predict(input))
+    user_id = session.get("user_id")
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like [{"flower1":"sentence"},{"flower2":"sentence}]
     sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(sentiment) + \
                "circumstance predict: "+getflower.getCircumstance(circumstance) + '\n\n' + "당신에게 두 꽃을 추천드립니다.\n\n"+\
                 list(rec_flower[0].keys())[0]+": " + list(rec_flower[0].values())[0] + "\n"+ \
-                list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0]
+                list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0] + " unique_id : " + str(n_unique)
+
+    # DB INSERT ID, SENTENCE, EMOTION, SITUATIOn
+
+
     return sentence
+@app.route('/val')
+def validation():
+    user_id = session.get("user_id")
+    # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
+
+
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
     if request.method == 'POST':
         input = request.form['input']
+        n_unique = id.newID()
         print(input)
         return redirect(url_for('result', input=input))
     else:
