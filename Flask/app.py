@@ -56,7 +56,8 @@ def result(input):#input: 사용자로부터 받는 메세지
                            first_flower = first_flower, \
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
-                           second_flower_explain = second_flower_explain)
+                           second_flower_explain = second_flower_explain,\
+                           user_id = user_id)
 @app.route('/final/<input>')
 def final(input):
 
@@ -91,4 +92,4 @@ if __name__ == '__main__':
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("page_not_found.html"), 400
+    return render_template("page_not_found.html") , 400
