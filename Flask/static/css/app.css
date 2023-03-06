@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumBaReunJeongSin.css"'); 
   body {
     text-align: center;
     flex-direction: column;
@@ -8,9 +10,9 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Darker Grotesque', sans-serif; }
+    font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif; }
     body .head_div {
-      font-size: 2.5rem; }
+      font-size: 3rem; }
       body .typing-container {
         display: block;
         justify-content: center;
