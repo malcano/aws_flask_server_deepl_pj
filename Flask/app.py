@@ -27,7 +27,6 @@ def kkot():
     session['user_id'] = user_id
     return render_template("index.html")
 @app.route('/result/<input>')
-
 def result(input):#input: 사용자로부터 받는 메세지
 
     #need to insert to Database
@@ -52,21 +51,22 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     # DB INSERT ID, SENTENCE, EMOTION, SITUATION
 
-
+    #need to parse img link
     return render_template("select_page.html", \
                            first_flower = first_flower, \
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
                            second_flower_explain = second_flower_explain)
-@app.route('/val')
-def validation():
-    user_id = session.get("user_id")
+@app.route('/final/<input>')
+def final(input):
 
     # DB UPDATE CHOSEN FLOWER, SATISFACTION BY ID
 
 
 
     session.clear()
+    return render_template("final_page.html")
+
     
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
@@ -81,13 +81,9 @@ def predict():
 
 @app.route('/val', methods=['POST','GET'])
 def save():
-    if request.method == 'POST':
-        input = request.form['input']
-        n_unique = id.newID()
-        print(input)
-        return redirect(url_for('result', input=input))
-    else:
-        temp = None
+    input = request.form['img_btn']
+    print(input)
+    return redirect(url_for('final',input=input))
 
 
 if __name__ == '__main__':
