@@ -18,7 +18,8 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):
-    sentence = "input message: " + str(input) +"\nsentiment predict: "+ str(md.sentiment_predict(input)) + "circumstance predict: "+str(md.circumstance_predict(input))
+    sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(md.sentiment_predict(input)) + \
+               "circumstance predict: "+getflower.getCircumstance(md.sentiment_predict(input)) + '/n/n' + "당신에게 두 꽃을 추천드립니다./n/n"+\
     return sentence
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
