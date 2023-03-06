@@ -23,7 +23,7 @@ def kkot():
     session['user_id'] = user_id
     return render_template("index.html")
 @app.route('/result/<input>')
-def result(input, n_unique):#input: 사용자로부터 받는 메세지
+def result(input):#input: 사용자로부터 받는 메세지
     sentiment = int(md.sentiment_predict(input))
     circumstance = int(md.circumstance_predict(input))
     user_id = session.get("user_id")
