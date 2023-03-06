@@ -18,13 +18,13 @@ def kkot():
     return render_template("index.html")
 @app.route('/result/<input>')
 def result(input):
-    sentiment = md.sentiment_predict(input)
-    circumstance = md.circumstance_predict(input)
+    sentiment = int(md.sentiment_predict(input))
+    circumstance = int(md.circumstance_predict(input))
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like [{"flower1":"sentence"},{"flower2":"sentence}]
     sentence = "input message: " + str(input) +"\nsentiment predict: "+ getflower.getSentiment(sentiment) + \
                "circumstance predict: "+getflower.getCircumstance(circumstance) + '\n\n' + "당신에게 두 꽃을 추천드립니다.\n\n"+\
-                rec_flower[0].keys()[0]+": " + rec_flower[0].values()[0] + "\n"+ \
-                rec_flower[1].keys()[0]+": " + rec_flower[1].values()[0]
+                list(rec_flower[0].keys())[0]+": " + list(rec_flower[0].values())[0] + "\n"+ \
+                list(rec_flower[1].keys())[0]+": " + list(rec_flower[1].values())[0]
     return sentence
 @app.route('/predict', methods=['POST', 'GET'])
 def predict():
