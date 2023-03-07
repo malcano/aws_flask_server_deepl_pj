@@ -124,6 +124,7 @@ def finalfirst(input):
         cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
     else:
         cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s", (flower, input))
+    cur.connection.commit()
     cur.close()
     config.close()
 
@@ -159,9 +160,12 @@ def finalsecond(input):
     # flower_satisfaction database: insert id, chosen_flower
     #
     if result[0] == 0:
+        print("second insert query occured")
         cur.execute("INSERT INTO flower_satisfaction (id,chosen_flower) VALUES (%s,%s)", (input,flower))
     else:
+        print("second update query occured")
         cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s", (flower, input))
+    cur.connection.commit()
     cur.close()
     config.close()
 
@@ -193,6 +197,8 @@ def goodfeedback(input):
     cur = config.conn().cursor()
     update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 1  WHERE id = %s'
     cur.execute(update_SQL, input)
+    cur.connection.commit()
+
     cur.close()
     config.close()
 
@@ -204,7 +210,10 @@ def badfeedback(input):
     config = db()
     cur = config.conn().cursor()
     update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 0  WHERE id = %s'
+
     cur.execute(update_SQL, input)
+    cur.connection.commit()
+
     cur.close()
     config.close()
     return redirect(url_for('kkot'))
