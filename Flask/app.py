@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, g
 from flask_assets import Environment, Bundle
-import config
+from config import db
 import time
 import model, getFlower, create_id
 
@@ -56,7 +56,8 @@ def result(input):#input: 사용자로부터 받는 메세지
         return sentiment, circumstance
 
     id = create_id.id()
-    cur = config.conn.cursor()
+    config = db()
+    cur = config.conn().cursor()
 
     #need to insert to Database
     sentence = input
@@ -73,8 +74,10 @@ def result(input):#input: 사용자로부터 받는 메세지
     second_flower_explain = list(rec_flower.values())[1]
     print(f"user id: {user_id} sentence: {sentence} sentiment: {sentiment} circumstance: {circumstance}")
     cur.execute("INSERT INTO flower_result (id,sentence,emotion,situation) VALUES (%s,%s,%s,%s)", (str(user_id),sentence,sentiment,circumstance))
-    config.conn.commit()
+    config.conn().commit()
     cur.close()
+    config.close()
+
 
     #need to parse img link
     return render_template("select_page.html", css='select_bundle',\
@@ -85,7 +88,8 @@ def result(input):#input: 사용자로부터 받는 메세지
                            user_id = str(user_id))
 @app.route('/finalfisrt/<input>')
 def finalfirst(input):
-    cur = config.conn.cursor()
+    config = db()
+    cur = config.conn().cursor()
 
     get_emotion_SQL = 'SELECT emotion FROM flower_result WHERE id = %s'
     get_situation_SQL = 'SELECT situation FROM flower_result WHERE id = %s'
@@ -112,13 +116,16 @@ def finalfirst(input):
     else:
         cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s", (flower, input))
     cur.close()
+    config.close()
 
     return render_template("final_page.html", flower = flower, explain = explain, input=input)
 
 
 @app.route('/finalsecond/<input>')
 def finalsecond(input):
-    cur = config.conn.cursor()
+    config = db()
+
+    cur = config.conn().cursor()
 
     get_emotion_SQL = 'SELECT emotion FROM flower_result WHERE id = %s'
     get_situation_SQL = 'SELECT situation FROM flower_result WHERE id = %s'
@@ -146,6 +153,7 @@ def finalsecond(input):
     else:
         cur.execute("UPDATE flower_satisfaction SET chosen_flower = %s WHERE id = %s", (flower, input))
     cur.close()
+    config.close()
 
     return render_template("final_page.html", flower = flower, explain = explain, input=input)
 
@@ -171,20 +179,24 @@ def save(user_id):
 @app.route('/goodfeedback/<input>', methods = ['POST'])
 def goodfeedback(input):
     #update feedback to db
-    cur = config.conn.cursor()
+    config = db()
+    cur = config.conn().cursor()
     update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 1  WHERE id = %s'
     cur.execute(update_SQL, input)
     cur.close()
+    config.close()
 
     return redirect(url_for('kkot'))
 
 @app.route('/badfeedback/<input>', methods = ['POST'])
 def badfeedback(input):
     #update feedback to db
-    cur = config.conn.cursor()
+    config = db()
+    cur = config.conn().cursor()
     update_SQL = 'UPDATE flower_satisfaction SET satisfaction = 0  WHERE id = %s'
     cur.execute(update_SQL, input)
     cur.close()
+    config.close()
     return redirect(url_for('kkot'))
 
 if __name__ == '__main__':
