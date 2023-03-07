@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,900); 
   body {
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Darker Grotesque', 'Roboto', sans-serif;
+    background: #2e2e2e; }
 
     .header, .footer {
-      background: #2e2e2e;
+      background: #2b2b2b;
       color: #fff;
       padding: 30px;
       text-align: center; }
