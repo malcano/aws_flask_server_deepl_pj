@@ -12,8 +12,11 @@ print("create getflower instance!")
 app = Flask(__name__)
 
 assets = Environment(app)
-scss = Bundle('app.scss', filters='pyscss', output='css/app.css')
-assets.register('scss_all', scss)
+
+# index page에 scss 적용
+index_bundle = Bundle('css/index.scss', filters='pyscss', output='css/index.css')
+assets.register('scss_all', index_bundle)
+
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 cur = config.conn.cursor()
 # we can use cur like below codes
@@ -23,7 +26,8 @@ cur = config.conn.cursor()
 
 @app.route("/")
 def kkot():
-    return render_template("index.html")
+    return render_template("index.html", css=index_bundle)
+
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
 
