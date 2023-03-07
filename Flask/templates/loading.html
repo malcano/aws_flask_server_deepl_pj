@@ -1,13 +1,25 @@
+<!-- loading_page.html -->
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Loading Page</title>
-
+	<title>Loading...</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		// 예시로 3초간 로딩 페이지를 보여줍니다.
+		setTimeout(function(){
+			$("#loading").hide();
+			$("#result").show();
+		}, 3000);
+	});
+	</script>
 </head>
 <body>
-    <div id="loading">
-        <p id="loading-text">Loading...</p>
-    </div>
+	<div id="loading">
+		<p>Loading...</p>
+	</div>
+	<div id="result" style="display:none;">
+		<p>Result</p>
+	</div>
 </body>
 </html>

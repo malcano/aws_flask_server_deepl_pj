@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, g
+from flask import Flask, render_template, request, redirect, url_for, jsonify, g, render_template_string
 from flask_assets import Environment, Bundle
 from config import db
 import time
@@ -60,6 +60,8 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     #need to insert to Database
     sentence = input
+
+
     sentiment, circumstance = deeplearning(sentence)
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like {"flower1":"sentence","flower2":"sentence}
     user_id = id.newID()
