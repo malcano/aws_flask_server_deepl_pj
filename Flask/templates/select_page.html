@@ -3,8 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>TEST PAGE</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery 추가 -->
+
 </head>
 <body>
+<style>
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            text-align: center;
+        }
+        #loading-text {
+            font-size: 36px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+    </style>
+
 <h1>둘 중 마음에 드는 꽃을 골라주세요!</h1>
     <form action="/val/{{user_id}}" method = "POST" style="display:inline-flex">
         <button type="submit" class="btm_image" id="img_btn1" name="img_btn" value = "first" ><img  src="https://mblogthumb-phinf.pstatic.net/MjAxOTEwMTFfMTc0/MDAxNTcwODA1MzU1OTk0._1xmsXhVHaeByefk8iJq5-wQt75Iuilo1a-K9aiw_uAg.IK3nx1hSa07CeylTaeWW5aS81FLxyfGKbNMku5NRG8Eg.JPEG.sssss747/7B2688E9-C8DC-4431-8539-5D10034A8D65-22206-0000104FF936EB6B_file.jpg?type=w800"></button>
@@ -19,10 +37,17 @@
     <p>explain: {{first_flower_explain}}</p>
     <p>second flower: {{second_flower}}</p>
     <p>explain: {{second_flower_explain}}</p>
-
-<div>
-
-</div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loading').style.display = 'block';
+            fetch('/background_task')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('flower_form').style.display = 'block';
+                });
+        });
+    </script>
 
 
 </body>
