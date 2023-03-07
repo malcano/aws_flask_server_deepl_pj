@@ -65,6 +65,7 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     sentiment, circumstance = deeplearning(sentence)
     rec_flower = getflower.fromFlowerList(sentiment, circumstance) # return value would be like {"flower1":"sentence","flower2":"sentence}
+    flowers_link = getflower.imglink(sentiment, circumstance) # return type : list
     user_id = id.newID()
     del id
     #need to parse to select_page.html
@@ -72,6 +73,8 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     first_flower = list(rec_flower.keys())[0]
     second_flower = list(rec_flower.keys())[1]
+    first_flower_img = flowers_link[0]
+    second_flower_img = flowers_link[1]
     first_flower_explain = list(rec_flower.values())[0]
     second_flower_explain = list(rec_flower.values())[1]
     print(f"user id: {user_id} sentence: {sentence} sentiment: {sentiment} circumstance: {circumstance}")
@@ -79,15 +82,18 @@ def result(input):#input: 사용자로부터 받는 메세지
     config.conn().commit()
     cur.close()
     config.close()
+    print(f"first_flower_img = {first_flower_img}")
 
-
+    print(f"second_flower_img = {second_flower_img}")
     #need to parse img link
     return render_template("select_page.html", css='select_bundle',\
                            first_flower = first_flower, \
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
                            second_flower_explain = second_flower_explain,\
-                           user_id = str(user_id))
+                           user_id = str(user_id),\
+                           first_flower_img = first_flower_img+'.png',\
+                           second_flower_img = second_flower_img+'.png')
 @app.route('/finalfisrt/<input>')
 def finalfirst(input):
     config = db()
@@ -102,6 +108,7 @@ def finalfirst(input):
     situation = cur.fetchall()[0][0]
     print(f"emotion:{situation}")
     chosen_flower = getflower.fromFlowerList(emotion,situation)
+    chosen_flower_img = getflower.imglink(emotion, situation)[0]
     flower = list(chosen_flower.keys())[0]
     explain = list(chosen_flower.values())[0]
 
@@ -120,7 +127,7 @@ def finalfirst(input):
     cur.close()
     config.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain, input=input)
+    return render_template("final_page.html", flower = flower, explain = explain, input=input, chosen_flower_img=chosen_flower_img)
 
 
 @app.route('/finalsecond/<input>')
@@ -139,6 +146,7 @@ def finalsecond(input):
     print(f"emotion:{situation}")
 
     chosen_flower = getflower.fromFlowerList(emotion,situation)
+    chosen_flower_img = getflower.imglink(emotion, situation)[1]
 
     flower = list(chosen_flower.keys())[1]
     explain = list(chosen_flower.values())[1]
@@ -157,7 +165,7 @@ def finalsecond(input):
     cur.close()
     config.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain, input=input)
+    return render_template("final_page.html", flower = flower, explain = explain, input=input, chosen_flower_img= chosen_flower_img)
 
 
 @app.route('/predict', methods=['POST', 'GET'])

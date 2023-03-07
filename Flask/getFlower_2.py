@@ -83,6 +83,10 @@ class getFlower:
         # 재정, 은퇴,노후준비    6
         # 직장, 업무스트레스    7
         # 건강죽음    8
+        sample = [['대인관계 꽃1링크', '대인관계 꽃2링크'],['진로취업직장 꽃1링크', '진로취업직장 꽃2링크'],['연애결혼출산 꽃1링크', '연애결혼출산 꽃2링크'],
+                  ['가족관계 꽃1링크', '가족관계 꽃2링크'],['학업및진로 꽃1링크', '학업및진로 꽃2링크'],['학교폭력따돌림 꽃1링크', '학교폭력따돌림 꽃2링크'],
+                  ['재정은퇴노후준바 꽃1링크', '재정은퇴노후준바 꽃2링크'],['직장업무스트레스 꽃1링크', '직장업무스트레스 꽃2링크'], 
+                  ['건강죽음 꽃1링크', '건강죽음 꽃2링크']]#예시입니다
 
         img_nervous = [['https://imgur.com/hXrIW8Q', 'https://imgur.com/mftPPLn'], ['https://imgur.com/CC7i1MV', 'https://imgur.com/WTQe1s8'],
                        ['https://imgur.com/po6eYVu', 'https://imgur.com/NH9C6ZR'], ['https://imgur.com/Ml2hiXQ', 'https://imgur.com/a3CjPSY'],
@@ -90,24 +94,24 @@ class getFlower:
                        ['https://imgur.com/zhK0tOX', 'https://imgur.com/U2BvKlJ'], ['https://imgur.com/cjVXjal', 'https://imgur.com/YAq2CjX'],
                        ['https://imgur.com/bcdukqu', 'https://imgur.com/xki1kjr']]#불안
         img_annoy = [['https://imgur.com/OvwaWbX', 'https://imgur.com/WB8eVYO'], ['https://imgur.com/CVEv2A5', 'https://imgur.com/WTQe1s8'],
-                     ['https://imgur.com/NeYH2g2', 'https://imgur.com/kefGo1I'], ['https://imgur.com/r80rgG6', 'https://imgur.com/BEOTH8S'],
-                     ['https://imgur.com/xl5RJHK', 'https://imgur.com/E48gXmr'], ['https://imgur.com/tKFpc7l', 'https://imgur.com/MXIcQnc'],
+                     ['https://imgur.com/NeYH2g2', 'https://imgur.com/kefGo1I'], ['https://imgur.com/r80rgG6', 'https://imgur.com/BEOTH8S'], 
+                     ['https://imgur.com/xl5RJHK', 'https://imgur.com/E48gXmr'], ['https://imgur.com/tKFpc7l', 'https://imgur.com/MXIcQnc'], 
                      ['https://imgur.com/I9X69gW', 'https://imgur.com/WPpjTBJ'], ['https://imgur.com/JemaYda', 'https://imgur.com/0rRe6AQ'],
                      ['https://imgur.com/m3sYsZo', 'https://imgur.com/fscPJ05']]#분노
-        img_hurt = [['https://imgur.com/pEW7575', 'https://imgur.com/gEOGNTf'], ['https://imgur.com/xki1kjr', 'https://imgur.com/xXKmmQr'],
+        img_hurt = [['https://imgur.com/pEW7575', 'https://imgur.com/gEOGNTf'], ['https://imgur.com/xki1kjr', 'https://imgur.com/xXKmmQr'], 
                     ['https://imgur.com/qsM7y0m', 'https://imgur.com/PCImFDT'], ['https://imgur.com/JGr8dWA', 'https://imgur.com/9n5ZvRR'],
-                    ['https://imgur.com/SFKsDHU', 'https://imgur.com/oeQIFdE'], ['https://imgur.com/k2AnxIK', 'https://imgur.com/JJAzfxZ'],
-                    ['https://imgur.com/eWdTQ8M', 'https://imgur.com/SMjBaFr'], ['https://imgur.com/yhg1byN', 'https://imgur.com/GdIU6Mb'],
+                    ['https://imgur.com/SFKsDHU', 'https://imgur.com/oeQIFdE'], ['https://imgur.com/k2AnxIK', 'https://imgur.com/JJAzfxZ'], 
+                    ['https://imgur.com/eWdTQ8M', 'https://imgur.com/SMjBaFr'], ['https://imgur.com/yhg1byN', 'https://imgur.com/GdIU6Mb'], 
                     ['https://imgur.com/G9kPe5z', 'https://imgur.com/g1rbmZD']]#상처
-        img_sad = [['https://imgur.com/qsM7y0m', 'https://imgur.com/HSmriM4'], ['https://imgur.com/xki1kjr', 'https://imgur.com/xXKmmQr'],
-                   ['https://imgur.com/qsM7y0m', 'https://imgur.com/PCImFDT'], ['https://imgur.com/JGr8dWA', 'https://imgur.com/9n5ZvRR'],
-                   ['https://imgur.com/SFKsDHU', 'https://imgur.com/oeQIFdE'], ['https://imgur.com/k2AnxIK', 'https://imgur.com/JJAzfxZ'],
-                   ['https://imgur.com/eWdTQ8M', 'https://imgur.com/SMjBaFr'], ['https://imgur.com/yhg1byN', 'https://imgur.com/GdIU6Mb'],
+        img_sad = [['https://imgur.com/qsM7y0m', 'https://imgur.com/HSmriM4'], ['https://imgur.com/xki1kjr', 'https://imgur.com/xXKmmQr'], 
+                   ['https://imgur.com/qsM7y0m', 'https://imgur.com/PCImFDT'], ['https://imgur.com/JGr8dWA', 'https://imgur.com/9n5ZvRR'], 
+                   ['https://imgur.com/SFKsDHU', 'https://imgur.com/oeQIFdE'], ['https://imgur.com/k2AnxIK', 'https://imgur.com/JJAzfxZ'], 
+                   ['https://imgur.com/eWdTQ8M', 'https://imgur.com/SMjBaFr'], ['https://imgur.com/yhg1byN', 'https://imgur.com/GdIU6Mb'], 
                    ['https://imgur.com/G9kPe5z', 'https://imgur.com/g1rbmZD']]#슬픔
-        img_joy = [['https://imgur.com/cZbGhQf', 'https://imgur.com/8IhtTmL'], ['https://imgur.com/QDcbsqx', 'https://imgur.com/aOL2WR4'],
-                   ['https://imgur.com/NeYH2g2', 'https://imgur.com/kefGo1I'], ['https://imgur.com/r80rgG6', 'https://imgur.com/BEOTH8S'],
-                   ['https://imgur.com/xl5RJHK', 'https://imgur.com/E48gXmr'], ['https://imgur.com/tKFpc7l', 'https://imgur.com/MXIcQnc'],
-                   ['https://imgur.com/I9X69gW', 'https://imgur.com/WPpjTBJ'], ['https://imgur.com/JemaYda', 'https://imgur.com/0rRe6AQ'],
+        img_joy = [['https://imgur.com/cZbGhQf', 'https://imgur.com/8IhtTmL'], ['https://imgur.com/QDcbsqx', 'https://imgur.com/aOL2WR4'], 
+                   ['https://imgur.com/NeYH2g2', 'https://imgur.com/kefGo1I'], ['https://imgur.com/r80rgG6', 'https://imgur.com/BEOTH8S'], 
+                   ['https://imgur.com/xl5RJHK', 'https://imgur.com/E48gXmr'], ['https://imgur.com/tKFpc7l', 'https://imgur.com/MXIcQnc'], 
+                   ['https://imgur.com/I9X69gW', 'https://imgur.com/WPpjTBJ'], ['https://imgur.com/JemaYda', 'https://imgur.com/0rRe6AQ'], 
                    ['https://imgur.com/m3sYsZo', 'https://imgur.com/fscPJ05']]#행복
         self.flowerList = [sentiment_nervous, sentiment_annoy, sentiment_hurt, sentiment_sad, sentiment_joy]
         self.flowerIMG = [img_nervous, img_annoy, img_hurt, img_sad, img_joy]
@@ -125,7 +129,6 @@ class getFlower:
         :param circumstance:
         :return:
         """
-        return self.flowerIMG[sentiment][circumstance]
     def getSentiment(self, sentiment_number):
         if sentiment_number == 0:
           return '불안'
