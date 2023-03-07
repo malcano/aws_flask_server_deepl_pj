@@ -15,6 +15,7 @@ assets = Environment(app)
 
 # index page에 scss 적용
 index_bundle = Bundle('scss/index.scss', filters='pyscss', output='css/index.css')
+select_bundle = Bundle('scss/select.scss', filters='pyscss', output='css/select.css')
 
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 # we can use cur like below codes
@@ -76,7 +77,7 @@ def result(input):#input: 사용자로부터 받는 메세지
     cur.close()
 
     #need to parse img link
-    return render_template("select_page.html", \
+    return render_template("select_page.html", css='select_bundle',\
                            first_flower = first_flower, \
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
@@ -195,3 +196,4 @@ def page_not_found(error):
 
 # 번들링된 scss 렌더링
 assets.register('index_css', index_bundle)
+assets.register('select_css', select_bundle)
