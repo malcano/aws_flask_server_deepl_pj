@@ -12,37 +12,38 @@ print("create getflower instance!")
 app = Flask(__name__)
 
 assets = Environment(app)
-scss = Bundle('app.scss', filters='pyscss', output='css/app.css')
-assets.register('scss_all', scss)
+
+# index page에 scss 적용
+index_bundle = Bundle('scss/index.scss', filters='pyscss', output='css/index.css')
+
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 # we can use cur like below codes
 # cur.execute("쿼리문")
 # cur.execute("INSERT INTO Details (name,email,comment,gender) VALUES (%s,%s,%s,%s)", (name,email,comment,gender))
 # conn.commit()
 
-@app.before_request
-def before_request():
-    g.start_time = time.time() # 요청 시작 시간 저장
-    if request.path.startswith('/result'): # 요청이 결과 페이지인 경우에만 로딩 페이지 렌더링
-        return render_template('loading.html')
+# @app.before_request
+# def before_request():
+#     g.start_time = time.time() # 요청 시작 시간 저장
+#     if request.path.startswith('/result'): # 요청이 결과 페이지인 경우에만 로딩 페이지 렌더링
+#         return render_template('loading.html')
 
-@app.after_request
-def after_request(response):
-    if request.path.startswith('/result'): # 요청이 결과 페이지인 경우에만 처리
-        # 로딩 페이지를 최소 2초 이상 보여주기 위해, 요청이 완료되기 전에 일정 시간이 지나면 기다리지 않고 바로 응답을 보내줌
-        response.headers['Refresh'] = '2;url=%s' % request.path
-        elapsed_time = time.time() - g.start_time # 요청 처리 시간 측정
-        if elapsed_time < 2: # 요청 처리 시간이 2초 미만이면 추가적으로 대기
-            time.sleep(2 - elapsed_time)
+# @app.after_request
+# def after_request(response):
+#     if request.path.startswith('/result'): # 요청이 결과 페이지인 경우에만 처리
+#         # 로딩 페이지를 최소 2초 이상 보여주기 위해, 요청이 완료되기 전에 일정 시간이 지나면 기다리지 않고 바로 응답을 보내줌
+#         response.headers['Refresh'] = '2;url=%s' % request.path
+#         elapsed_time = time.time() - g.start_time # 요청 처리 시간 측정
+#         if elapsed_time < 2: # 요청 처리 시간이 2초 미만이면 추가적으로 대기
+#             time.sleep(2 - elapsed_time)
 
-    return response
+#     return response
 
 @app.route("/")
 def kkot():
-    return render_template("index.html")
 
-def machineActivation_async():
-    pass
+    return render_template("index.html", css=index_bundle)
+
 @app.route('/result/<input>')
 def result(input):#input: 사용자로부터 받는 메세지
 
@@ -189,3 +190,6 @@ if __name__ == '__main__':
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("page_not_found.html") , 400
+
+# 번들링된 scss 렌더링
+assets.register('index_css', index_bundle)

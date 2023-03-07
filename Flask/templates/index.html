@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>TEST PAGE</title>
-    {% assets "scss_all" %}
+    {% assets "index_css" %}
     <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
   {% endassets %}
 </head>
@@ -30,6 +30,6 @@
     </form>
 </div>
 
-<script src="{{ url_for('static', filename='script.js') }}"></script>  
+<script src="{{ url_for('static', filename='js/index_script.js') }}"></script>  
 </body>
 </html>
