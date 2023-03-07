@@ -73,8 +73,25 @@ class getFlower:
             {"백합 'YELLOWWIN'":"행복, 금전운, 자신감","다알리아 'DAHLIA' ":"정열, 고귀함, 당신을 알아 기쁩니다"},#직장
             {"불노초 'FOREVER YOUNG'":"영원한 청춘, 영원한 젊음","다알리아 'ORANGE POMPON DAHLIA' ":"감사, 우아, 인내"}] #건강
 
-        self.flowerList = [sentiment_nervous, sentiment_annoy, sentiment_hurt, sentiment_sad, sentiment_joy]
+        # circumstance code
+        # 대인관계    0
+        # 진로, 취업, 직장    1
+        # 연애, 결혼, 출산    2
+        # 가족관계 3
+        # 학업 및 진로    4
+        # 학교폭력 따돌림    5
+        # 재정, 은퇴,노후준비    6
+        # 직장, 업무스트레스    7
+        # 건강죽음    8
+        sample = [['대인관계 꽃1링크', '대인관계 꽃2링크'],['진로취업직장 꽃1링크', '진로취업직장 꽃2링크'],['연애결혼출산 꽃1링크', '연애결혼출산 꽃2링크'],['가족관계 꽃1링크', '가족관계 꽃2링크'],['학업및진로 꽃1링크', '학업및진로 꽃2링크'],['학교폭력따돌림 꽃1링크', '학교폭력따돌림 꽃2링크'],['재정은퇴노후준바 꽃1링크', '재정은퇴노후준바 꽃2링크'],['건강죽음 꽃1링크', '건강죽음 꽃2링크']]#예시입니다
 
+        img_nervous = []#불안
+        img_annoy = []#분노
+        img_hurt = []#상처
+        img_sad = []#슬픔
+        img_joy = []#행복
+        self.flowerList = [sentiment_nervous, sentiment_annoy, sentiment_hurt, sentiment_sad, sentiment_joy]
+        self.flowerIMG = [img_nervous, img_annoy, img_hurt, img_sad, img_joy]
     def fromFlowerList(self, sentiment: int, circumstance: int):
         """
         :param sentiment: sentiment code
