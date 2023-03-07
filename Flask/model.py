@@ -23,16 +23,6 @@ class model:
     pad_new = pad_sequences(encoded, maxlen = self.max_len) # 패딩
     score = float(np.argmax(self.first_model.predict(pad_new), axis=-1)) # 예측
     return score
-    # if score == 0:
-    #   return '불안'
-    # elif score == 1:
-    #   return '분노'
-    # elif score == 2:
-    #   return '상처'
-    # elif score == 3:
-    #   return '슬픔'
-    # elif score == 4:
-    #   return '기쁨'
 
   def circumstance_predict(self, new_sentence):
     new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
@@ -42,22 +32,3 @@ class model:
     pad_new = pad_sequences(encoded, maxlen = self.max_len) # 패딩
     score = float(np.argmax(self.second_model.predict(pad_new), axis=-1)) # 예측
     return score
-    #
-    # if score == 0:
-    #   return '대인관계'
-    # elif score == 1:
-    #   return '진로,취업,직장'
-    # elif score == 2:
-    #   return '연애,결혼,출산'
-    # elif score == 3:
-    #   return '가족관계'
-    # elif score == 4:
-    #   return '학업 및 진로'
-    # elif score == 5:
-    #   return '학교폭력/따돌림'
-    # elif score == 6:
-    #   return '재정,은퇴,노후준비'
-    # elif score == 7:
-    #   return '직장, 업무 스트레스'
-    # elif score == 8:
-    #   return '건강,죽음'
