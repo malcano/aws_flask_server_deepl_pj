@@ -14,8 +14,7 @@ app = Flask(__name__)
 assets = Environment(app)
 
 # index page에 scss 적용
-index_bundle = Bundle('css/index.scss', filters='pyscss', output='css/index.css')
-assets.register('scss_all', index_bundle)
+index_bundle = Bundle('scss/index.scss', filters='pyscss', output='css/index.css')
 
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 cur = config.conn.cursor()
@@ -105,3 +104,6 @@ if __name__ == '__main__':
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("page_not_found.html") , 400
+
+# 번들링된 scss 렌더링
+assets.register('index_css', index_bundle)
