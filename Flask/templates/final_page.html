@@ -3,8 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% assets "final_css" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
 </head>
 <body>
+  <div class='shop'>
+    <div class='gallery'>
+      <div class='controls'>
+        <div class='arrows'>
+          <div class='left'><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+          <div class='right'><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
+        </div>	
+      </div>
+      <div class='images-container'>
+        <div class='images'>
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/1c085475de0d3272/orig/ath_m50x_2_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/9808b5d44ab899ea/orig/ath_m50x_3_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/847fe5f338a2d20a/orig/ath_m50x_4_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/2c90dc8b9b5cb405/orig/ath_m50x_5_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/417738cf54264c8f/orig/ath_m50x_6_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/94cccc59624ab45a/orig/ath_m50x_7_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/57a5152f5f2c693c/orig/ath_m50x_8_sq.jpg' />
+        </div>
+        <div class='images'>
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/5973f825897b85cb/orig/ath_m50xwh_2_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/1d24ae4e06883e1d/orig/ath_m50xwh_3_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/6c1d0413455b49ef/orig/ath_m50xwh_4_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/fbd3e8ae387fcfaf/orig/ath_m50xwh_5_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/6aabba96fb4d7e38/orig/ath_m50xwh_6_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/682163c0e3ea59b9/orig/ath_m50xwh_7_sq.jpg' />
+          <img src='http://cdn-akamai.audio-technica.com/cms/resource_library/product_images/e3997d06afc04cdc/orig/ath_m50xwh_8_sq.jpg' />
+        </div>
+      </div>	
+    </div>
+    <div class='product'>
+      <div class='main-info'>
+        <h2 class='title'>Audio-Technica ATH-M50x</h2>
+        <h3 class='sub'>Professional Monitor Headphones</h3>
+        <h3 class='price'>$149.00</h3>
+      </div>
+      <div class='options'>
+        <ul class='color'>
+          <li style='background: #2D3031;'></li>
+          <li style='background: #fff;'></li>
+        </ul>
+      </div>
+      <div class='fin-check'>
+        <a href="#" class='btn main'>Add To Cart</a> 
+        <a href="#" class='btn side'>Add To List</a> 
+      </div>
+      <div class='desc'>
+        <p>
+          As the most critically acclaimed model in the M-Series line, the ATH-M50 is praised by top audio engineers and pro audio reviewers year after year. From the large aperture drivers, sound isolating earcups and robust construction, the M50x provides an unmatched experience for the most critical audio professionals. 
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>	
 <h1>{{flower}}! 아주 멋진 꽃이죠</h1>
 <h3>{{explain}}</h3>
 <br><br>
@@ -27,6 +83,7 @@
       alert("평가해주셔서 감사힙니다 :)");
     }
   </script>
+  <script src="{{ url_for('static', filename='js/final_script.js') }}"></script>
 </form>
 
 </body>

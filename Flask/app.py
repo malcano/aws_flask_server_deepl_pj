@@ -16,6 +16,7 @@ assets = Environment(app)
 # index page에 scss 적용
 index_bundle = Bundle('scss/index.scss', filters='pyscss', output='css/index.css')
 select_bundle = Bundle('scss/select.scss', filters='pyscss', output='css/select.css')
+final_bundle = Bundle('scss/final.scss', filters='pyscss', output='css/final.css')
 
 app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 # we can use cur like below codes
@@ -86,7 +87,7 @@ def result(input):#input: 사용자로부터 받는 메세지
 
     print(f"second_flower_img = {second_flower_img}")
     #need to parse img link
-    return render_template("select_page.html", css='select_bundle',\
+    return render_template("select_page.html", css=select_bundle,\
                            first_flower = first_flower, \
                            second_flower = second_flower, \
                            first_flower_explain = first_flower_explain, \
@@ -128,7 +129,7 @@ def finalfirst(input):
     cur.close()
     config.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain, input=input, chosen_flower_img=chosen_flower_img)
+    return render_template("final_page.html", css=final_bundle, flower = flower, explain = explain, input=input, chosen_flower_img=chosen_flower_img)
 
 
 @app.route('/finalsecond/<input>')
@@ -219,7 +220,7 @@ def badfeedback(input):
     return redirect(url_for('kkot'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port='8000')
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -228,3 +229,4 @@ def page_not_found(error):
 # 번들링된 scss 렌더링
 assets.register('index_css', index_bundle)
 assets.register('select_css', select_bundle)
+assets.register('final_css', final_bundle)

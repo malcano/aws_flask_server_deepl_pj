@@ -1,0 +1,149 @@
+$red: #FF1053;
+$dblue: #6C6EA0;
+$blue: #66C7F4;
+$gray: #C1CAD6;
+$green: #62D659;
+
+
+
+body {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background: linear-gradient(45deg, $red, $dblue);
+font-family: 'Raleway', sans-serif;
+flex-wrap: wrap;
+}
+
+.btn {
+display: inline-block;
+font-family: 'Raleway', sans-serif;
+border: none;
+outline: none;
+padding: 15px 30px;
+border-radius: 40px;
+text-decoration: none;
+transition: 0.15s ease-in-out;
+&.main {
+background: $green;
+color: white;
+&:hover {
+background: darken($green, 5%);
+}
+}
+&.side {
+background: $gray;
+color: white;
+&:hover {
+background: darken($gray, 5%);
+}
+}
+}
+
+.shop {
+width: 840px;
+background: white;
+border-radius: 20px;
+box-shadow: 0px 0px 15px 5px rgba(black, 0.35);
+display: flex;
+padding: 20px;
+.product {
+padding-left: 10px;
+width: calc(100% - 280px);
+.main-info {
+width: 100%;
+.title, .sub, .price {
+margin: 0;
+}
+}
+.options {
+ul {
+padding: 0;
+list-style: none;
+margin: 0;
+padding: 10px 0;
+display: flex;
+li {
+display: block;
+width: 30px;
+height: 30px;
+border-radius: 15px;
+border: 2px solid $gray;
+margin-right: 15px;
+cursor: pointer;
+transition: 0.25s ease-in-out;
+&.active {
+border-color: $green;
+box-shadow: 0px 0px 2px 1px rgba(black, 0.35);
+}
+}
+}
+}
+.fin-check {
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+margin-bottom: 10px;
+.btn {
+margin-right: 10px;
+&:last-child {
+margin-right: 0;
+}
+}
+}
+.desc {
+width: 90%;
+p {
+font-size: 14px;
+font-style: italic;
+color: #aaa;
+margin: 0;
+}
+}
+}
+.gallery {
+	width: 280px;
+	height: 280px;
+	background: grey;
+	overflow: hidden;
+	position: relative;
+	.controls {
+	width: 280px;
+	height: 280px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	.arrows {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-self: center;
+	.left, .right {
+	color: #aaa;
+	transition: 0.15s ease-in-out;
+	cursor: pointer;
+	&:hover {
+	color: black;
+	}
+	}
+	}
+	.images-container {
+	transition: 0.25s ease-in-out;
+	.images {
+	transition: 0.25s ease-in-out;
+	height: 280px;
+	display: flex;
+	img {
+	width: 280px;
+	height: auto;
+	}
+	}
+	}
+	}
+	}
+}
