@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, g, render_template_string
+from flask import Flask, render_template, request, redirect, url_for
 from flask_assets import Environment, Bundle
 from config import db
 import time
@@ -18,7 +18,6 @@ index_bundle = Bundle('scss/index.scss', filters='pyscss', output='css/index.css
 select_bundle = Bundle('scss/select.scss', filters='pyscss', output='css/select.css')
 final_bundle = Bundle('scss/final.scss', filters='pyscss', output='css/final.css')
 
-app.secret_key = 'dsaklfjiodsjfioasdjfioajdsiofjaiosdj'
 # we can use cur like below codes
 # cur.execute("쿼리문")
 # cur.execute("INSERT INTO Details (name,email,comment,gender) VALUES (%s,%s,%s,%s)", (name,email,comment,gender))
@@ -108,6 +107,8 @@ def finalfirst(input):
     cur.execute(get_situation_SQL, input)
     situation = cur.fetchall()[0][0]
     print(f"emotion:{situation}")
+
+
     chosen_flower = getflower.fromFlowerList(emotion,situation)
     chosen_flower_img = getflower.imglink(emotion, situation)[0]
     flower = list(chosen_flower.keys())[0]
@@ -129,7 +130,7 @@ def finalfirst(input):
     cur.close()
     config.close()
 
-    return render_template("final_page.html", css=final_bundle, flower = flower, explain = explain, input=input, chosen_flower_img=chosen_flower_img)
+    return render_template("final_page.html", css=final_bundle, flower = flower, explain = explain, input=input, chosen_flower_img = chosen_flower_img+'.png')
 
 
 @app.route('/finalsecond/<input>')
@@ -170,7 +171,7 @@ def finalsecond(input):
     cur.close()
     config.close()
 
-    return render_template("final_page.html", flower = flower, explain = explain, input=input, chosen_flower_img= chosen_flower_img)
+    return render_template("final_page.html", flower = flower, explain = explain, input=input, chosen_flower_img= chosen_flower_img+'.png')
 
 
 @app.route('/predict', methods=['POST', 'GET'])
@@ -220,7 +221,7 @@ def badfeedback(input):
     return redirect(url_for('kkot'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port='8000')
+    app.run(debug=True, host='0.0.0.0')
 
 @app.errorhandler(404)
 def page_not_found(error):
