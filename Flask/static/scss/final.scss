@@ -48,6 +48,16 @@ background: darken($gray, 5%);
 }
 }
 
+.like_input {
+	background-color: $green;
+	border: 0;
+}
+
+.dislike_input {
+	background-color: $gray;
+	border: 0;
+}
+
 .shop {
 width: 840px;
 background: white;

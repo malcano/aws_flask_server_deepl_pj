@@ -1,115 +1,112 @@
-$(".gallery").each( function(){
-	var gal = $(this),
-			imgsCont = gal.find(".images-container"),
-			imgs = imgsCont.find(".images"),
-			product = gal.parents(".shop").find(".product"),
-			controls = gal.find(".controls");
+// document.querySelectorAll(".gallery").forEach(function(gal) {
+//     var imgsCont = gal.querySelector(".images-container"),
+//         imgs = imgsCont.querySelectorAll(".images"),
+//         product = gal.closest(".shop").querySelector(".product"),
+//         controls = gal.querySelector(".controls");
+    
+//     if (imgsCont.querySelectorAll(".images.active").length == 0){
+//       imgsCont.querySelector(".images").classList.add("active");
+//     }
+    
+//     var imgsActive = imgsCont.querySelector(".images.active"),
+//         activeOffset = imgsActive.offsetTop - imgsCont.offsetTop;
+    
+//     imgs.forEach(function(img) {
+//       var childrenWidth = 0;
+      
+//       img.querySelectorAll("img").forEach(function(child) {
+//         childrenWidth += child.offsetWidth;
+//       });
+      
+//       img.style.width = childrenWidth + "px";
+//     });
+    
+//     imgsCont.style.transform = "translate(0, -" + activeOffset + "px)";
+    
+//     product.querySelector(".options li:nth-child(" + (imgsActive.dataset.index) + ")").classList.add("active");
+    
+//     product.querySelectorAll(".options li").forEach(function(opt) {
+//       opt.addEventListener("click", function(e) {
+//         e.preventDefault();
+        
+//         var optIndex = this.dataset.index;
+        
+//         this.parentNode.querySelectorAll(".active").forEach(function(active) {
+//           active.classList.remove("active");
+//         });
+//         this.classList.add("active");
+        
+//         var nextImgs = imgsCont.querySelector(".images[data-index='" + optIndex + "']"),
+//             nextImgsoffset = nextImgs.offsetTop - imgsCont.offsetTop;
+        
+//         imgsCont.querySelector(".images.active").classList.remove("active");
+//         nextImgs.classList.add("active");
+        
+//         imgsCont.style.transform = "translate(0, -" + nextImgsoffset + "px)";
+//       });
+//     });
+    
+//     imgs.forEach(function(img) {
+//       if (img.querySelector(".active") == null) {
+//         img.querySelector("img").classList.add("active");
+//       }
+//     });
+    
+//     function imgsNextImg() {
+//       var activeImgs = imgsCont.querySelector(".images.active"),
+//           acImg = activeImgs.querySelector("img.active"),
+//           imgsImg = activeImgs.querySelectorAll("img"),
+//           imgLen = imgsImg.length,
+//           nextImgEq = 0;
+      
+//       if (acImg.dataset.index + 1 > imgLen - 1) {
+//         nextImgEq = 0;
+//       } else {
+//         nextImgEq = parseInt(acImg.dataset.index) + 1;
+//       }
+      
+//       var nextEq = activeImgs.querySelector("img[data-index='" + nextImgEq + "']"),
+//           nextOffset = nextEq.offsetLeft - activeImgs.offsetLeft;
+      
+//       acImg.classList.remove("active");
+//       nextEq.classList.add("active");
+      
+//       activeImgs.style.transform = "translate(-" + nextOffset + "px, 0)";
+//     }
+//   });
+  
 	
-	if (imgsCont.find(".images.active").length == 0){
-		imgsCont.find(".images").first().addClass("active")
-	}
+// 	function imgsPrevImg(){
+		
+// 		var activeImgs = imgsCont.find(".images.active"),
+// 				acImg = activeImgs.find("img.active"),
+// 				imgsImg = activeImgs.find("img"),
+// 				imgLen = imgsImg.length,
+// 				nextImgEq = 0
+		
+// 		if (acImg.index() - 1 < 0){
+// 			nextImgEq = imgLen - 1
+// 		}else{
+// 			nextImgEq = acImg.index() - 1
+// 		}
+		
+// 		var nextEq = activeImgs.find("img").eq(nextImgEq),
+// 				nextOffset = nextEq.offset().left - activeImgs.offset().left
+		
+		
+// 		acImg.removeClass("active");
+// 		nextEq.addClass("active");
+		
+// 		activeImgs.css({"transform": "translate(-" + nextOffset + "px, 0)"})
+		
+// 	}
 	
-	var imgsActive = imgsCont.find(".images.active"),
-			activeOffset = imgsActive.offset().top - imgsCont.offset().top
+// 	$(controls).find(".arrows").find(".right").on('click', function(e){
+// 		e.preventDefault();
+// 		imgsNextImg()
+// 	});
+// 	$(controls).find(".arrows").find(".left").on('click', function(e){
+// 		e.preventDefault();
+// 		imgsPrevImg();
+// 	});
 	
-	imgs.each( function(){
-		var $this = $(this),
-				childrenWidth = 0;
-		
-		$this.children().each(function(){
-			childrenWidth += $(this).outerWidth()
-		});
-		
-		$this.width(childrenWidth)
-		
-	});
-	
-	imgsCont.css({"transform": "translate(0, -"+ activeOffset +"px)"});
-	
-	product.find(".options").find("li").eq(imgsActive.index()).addClass("active")
-	
-	product.find(".options").find("li").on('click', function(e){
-		e.preventDefault();
-		
-		var $this = $(this),
-				optIndex = $this.index();
-		
-		$this.parents("ul").find(".active").removeClass("active");
-		$this.addClass("active");
-		
-		var nextImgs = imgsCont.find(".images").eq(optIndex),
-				nextImgsoffset = nextImgs.offset().top - imgsCont.offset().top 
-		
-		imgsCont.find(".images.active").removeClass("active")
-		nextImgs.addClass("active")
-	
-	imgsCont.css({"transform": "translate(0, -"+ nextImgsoffset +"px)"});
-		
-	});
-	
-	imgs.each( function(){
-		if ($(this).find(".active").length == 0){
-			$(this).find("img").first().addClass("active")
-		}
-	})
-	
-	function imgsNextImg(){
-		
-		var activeImgs = imgsCont.find(".images.active"),
-				acImg = activeImgs.find("img.active"),
-				imgsImg = activeImgs.find("img"),
-				imgLen = imgsImg.length,
-				nextImgEq = 0
-		
-		if (acImg.index() + 1 >  imgLen - 1){
-			nextImgEq = 0
-		}else{
-			nextImgEq = acImg.index() + 1
-		}
-		
-		var nextEq = activeImgs.find("img").eq(nextImgEq),
-				nextOffset = nextEq.offset().left - activeImgs.offset().left
-		
-		
-		acImg.removeClass("active");
-		nextEq.addClass("active");
-		
-		activeImgs.css({"transform": "translate(-" + nextOffset + "px, 0)"})
-		
-	}
-	
-	function imgsPrevImg(){
-		
-		var activeImgs = imgsCont.find(".images.active"),
-				acImg = activeImgs.find("img.active"),
-				imgsImg = activeImgs.find("img"),
-				imgLen = imgsImg.length,
-				nextImgEq = 0
-		
-		if (acImg.index() - 1 < 0){
-			nextImgEq = imgLen - 1
-		}else{
-			nextImgEq = acImg.index() - 1
-		}
-		
-		var nextEq = activeImgs.find("img").eq(nextImgEq),
-				nextOffset = nextEq.offset().left - activeImgs.offset().left
-		
-		
-		acImg.removeClass("active");
-		nextEq.addClass("active");
-		
-		activeImgs.css({"transform": "translate(-" + nextOffset + "px, 0)"})
-		
-	}
-	
-	$(controls).find(".arrows").find(".right").on('click', function(e){
-		e.preventDefault();
-		imgsNextImg()
-	});
-	$(controls).find(".arrows").find(".left").on('click', function(e){
-		e.preventDefault();
-		imgsPrevImg();
-	});
-	
-});
