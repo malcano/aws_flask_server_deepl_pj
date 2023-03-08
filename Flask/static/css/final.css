@@ -98,6 +98,5 @@
                 height: 280px;
                 display: flex; }
                 .shop .gallery .controls .images-container .images img {
-                  width: 100%;
-                  height: auto;
-                  display: block; }
+                  width: 280px;
+                  height: auto; }
