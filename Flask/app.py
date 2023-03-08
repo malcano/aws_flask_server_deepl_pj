@@ -221,7 +221,7 @@ def badfeedback(input):
     return redirect(url_for('kkot'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port='8000')
 
 @app.errorhandler(404)
 def page_not_found(error):
