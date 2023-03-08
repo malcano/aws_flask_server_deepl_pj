@@ -65,58 +65,30 @@ border-radius: 20px;
 box-shadow: 0px 0px 15px 5px rgba(black, 0.35);
 display: flex;
 padding: 20px;
+
 .product {
 padding-left: 10px;
 width: calc(100% - 280px);
+
 .main-info {
 width: 100%;
+
 .title, .sub, .price {
 margin: 0;
 }
+
 }
-.options {
-ul {
-padding: 0;
-list-style: none;
-margin: 0;
-padding: 10px 0;
-display: flex;
-li {
-display: block;
-width: 30px;
-height: 30px;
-border-radius: 15px;
-border: 2px solid $gray;
-margin-right: 15px;
-cursor: pointer;
-transition: 0.25s ease-in-out;
-&.active {
-border-color: $green;
-box-shadow: 0px 0px 2px 1px rgba(black, 0.35);
-}
-}
-}
-}
-.fin-check {
-width: 100%;
-display: flex;
-flex-wrap: wrap;
-margin-bottom: 10px;
-.btn {
-margin-right: 10px;
-&:last-child {
-margin-right: 0;
-}
-}
-}
+
 .desc {
 width: 90%;
+
 p {
 font-size: 14px;
 font-style: italic;
 color: #aaa;
 margin: 0;
 }
+
 }
 }
 .gallery {

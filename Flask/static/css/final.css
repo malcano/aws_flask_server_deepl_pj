@@ -56,33 +56,6 @@
             .shop .product .main-info .title, .shop .product .main-info .sub,
             .shop .product .main-info .price {
               margin: 0; }
-          .shop .product .options ul {
-            padding: 0;
-            list-style: none;
-            margin: 0;
-            padding: 10px 0;
-            display: flex; }
-            .shop .product .options ul li {
-              display: block;
-              width: 30px;
-              height: 30px;
-              border-radius: 15px;
-              border: 2px solid #C1CAD6;
-              margin-right: 15px;
-              cursor: pointer;
-              transition: 0.25s ease-in-out; }
-              .shop .product .options ul li.active {
-                border-color: #62D659;
-                box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.35); }
-          .shop .product .fin-check {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 10px; }
-            .shop .product .fin-check .btn {
-              margin-right: 10px; }
-              .shop .product .fin-check .btn:last-child {
-                margin-right: 0; }
           .shop .product .desc {
             width: 90%; }
             .shop .product .desc p {
@@ -125,5 +98,6 @@
                 height: 280px;
                 display: flex; }
                 .shop .gallery .controls .images-container .images img {
-                  width: 280px;
-                  height: auto; }
+                  width: 100%;
+                  height: auto;
+                  display: block; }
