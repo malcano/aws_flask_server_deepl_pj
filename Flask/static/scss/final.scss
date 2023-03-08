@@ -5,7 +5,10 @@ $gray: #C1CAD6;
 $green: #62D659;
 
 
-
+* {
+	box-sizing: border-box;
+  }
+  
 body {
 min-height: 100vh;
 display: flex;
