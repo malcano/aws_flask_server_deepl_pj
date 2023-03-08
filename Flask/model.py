@@ -14,6 +14,9 @@ class model:
     with open('tokenizer.pickle', 'rb') as handle:
       self.tokenizer = pickle.load(handle)
     self.okt = Okt()
+
+
+
   def sentiment_predict(self, new_sentence):
 
     new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
