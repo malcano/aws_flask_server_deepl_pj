@@ -65,3 +65,24 @@ const carouselText = [
       input.value = input.value.substring(0, 49);
     }
   }
+
+  // form 요소를 선택합니다.
+const form = document.querySelector('form');
+
+// submit 이벤트가 발생하면 처리할 함수를 등록합니다.
+form.addEventListener('submit', (event) => {
+  // 기본 동작을 막습니다.
+  event.preventDefault();
+
+  // submit 버튼을 선택합니다.
+  const submitButton = form.querySelector('input[type="submit"]');
+
+  // 버튼을 비활성화합니다.
+  submitButton.disabled = true;
+
+  // 버튼의 값을 "분석중입니다"로 변경합니다.
+  submitButton.value = '분석중입니다...';
+
+  // form 요소를 서버로 전송합니다.
+  form.submit();
+});
