@@ -97,6 +97,7 @@
                 transition: 0.25s ease-in-out;
                 height: 280px;
                 display: flex; }
-                .shop .gallery .controls .images-container .images img {
-                  width: 280px;
-                  height: auto; }
+
+  .images img {
+    width: 100%;
+    height: auto; }
