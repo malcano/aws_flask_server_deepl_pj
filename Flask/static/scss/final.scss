@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css');
+@import url('https://hangeul.pstatic.net/hangeul_static/css/NanumBaReunJeongSin.css"');
+
+$red: #FF1053;
+$dblue: #6C6EA0;
+$blue: #66C7F4;
+$gray: #C1CAD6;
+$green: #62D659;
+$black: #2b2b2b;
+
+* {
+	box-sizing: border-box;
+  }
+  
+body {
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background: $black;
+font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif;
+flex-wrap: wrap;
+}
+
+.btn {
+display: inline-block;
+font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif;
+border: none;
+outline: none;
+padding: 15px 30px;
+border-radius: 40px;
+text-decoration: none;
+transition: 0.15s ease-in-out;
+&.main {
+background: $green;
+color: white;
+&:hover {
+background: darken($green, 5%);
+}
+}
+&.side {
+background: $gray;
+color: white;
+&:hover {
+background: darken($gray, 5%);
+}
+}
+}
+
+.like_input {
+	background-color: $green;
+	border: 0;
+}
+
+.dislike_input {
+	background-color: $gray;
+	border: 0;
+}
+
+.shop {
+width: 700px;
+background: white;
+border-radius: 20px;
+box-shadow: 0px 0px 15px 5px rgba(black, 0.35);
+display: flex;
+padding: 20px;
+
+.product {
+padding-left: 10px;
+width: calc(100% - 280px);
+
+.main-info {
+width: 100%;
+
+.title, .sub, .price {
+margin: 0;
+}
+
+}
+
+.desc {
+width: 90%;
+
+p {
+font-size: 14px;
+font-style: italic;
+color: #aaa;
+margin: 0;
+}
+
+}
+}
+.gallery {
+	width: 280px;
+	height: 280px;
+	background: grey;
+	overflow: hidden;
+	position: relative;
+	.controls {
+	width: 280px;
+	height: 280px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	.arrows {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-self: center;
+	.left, .right {
+	color: #aaa;
+	transition: 0.15s ease-in-out;
+	cursor: pointer;
+	&:hover {
+	color: black;
+	}
+	}
+	}
+	.images-container {
+	transition: 0.25s ease-in-out;
+	.images {
+	transition: 0.25s ease-in-out;
+	height: 280px;
+	display: flex;
+	img {
+	width: 280px;
+	height: auto;
+	}
+	}
+	}
+	}
+	}
+}

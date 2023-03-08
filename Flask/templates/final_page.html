@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>{{flower}}! 아주 멋진 꽃이죠</h1>
-<h3>{{explain}}</h3>
-<br><br>
-대충 설명과 이미지가 들어갈 예정이라는 뜻
-<br><br>
 
-<h1>이 추천 평가하기</h1>
-<form action="/goodfeedback/{{input}}" method = "POST" style="display:inline-flex">
-        <input type="submit" value="좋아요!" onclick="doAction()"/></p>
-  <script>
-    function doAction() {
-      alert("평가해주셔서 감사힙니다 :)");
-    }
-  </script>
-</form>
-<form action="/badfeedback/{{input}}" method = "POST" style="display:inline-flex">
-        <input type="submit" value="별로예요.." onclick="doAction()"/></p>
-  <script>
-    function doAction() {
-      alert("평가해주셔서 감사힙니다 :)");
-    }
-  </script>
-</form>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  {% assets "final_css" %}
+  <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+  {% endassets %}
+</head>
+
+<body>
+  <div class='shop'>
+    <div class='gallery'>
+      <div class='images-container'>
+        <div class='images'>
+          <img src='https://i.imgur.com/JemaYda.png' alt='Flower Image'/>
+        </div>
+      </div>  
+    </div>
+    <div class='product'>
+      <div class='main-info'>
+        <h2 class='title'>{{flower}}</h2>
+        <h3 class='sub'>{{explain}}</h3>
+        <h3 class='price'>$149.00</h3>
+      </div>
+      <br>
+      <br>
+      <div>
+        <div>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div class='desc'>
+        <form action="/goodfeedback/{{input}}" method="POST" style="display:inline-flex" class="btn main">
+          <input type="submit" value="좋아요!" class="like_input" onclick="doAction()"/></p>
+          <script>
+            function doAction() {
+              alert("평가해주셔서 감사힙니다 :)");
+            }
+          </script>
+        </form>
+        <form action="/badfeedback/{{input}}" method="POST" style="display:inline-flex" class="btn side">
+          <input type="submit" value="별로예요" class="dislike_input" onclick="doAction()" /></p>
+          <script>
+            function doAction() {
+              alert("평가해주셔서 감사힙니다 :)");
+            }
+          </script>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
 
 </body>
+
 </html>
