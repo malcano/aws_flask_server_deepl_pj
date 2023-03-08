@@ -7,3 +7,4 @@
 /Flask/config.py
 *.pyc
 /Flask/templates/test_select_page.html
+/Flask/static/.webassets-cache
