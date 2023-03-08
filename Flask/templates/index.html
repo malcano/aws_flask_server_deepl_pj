@@ -23,11 +23,11 @@
         <span class="input-cursor"></span>
       </div>
       <div class='input_div'>
-      <form action="/predict" method = "POST">
-        <input type="text" name="input" placeholder="문구를 입력해주세요">
-        <br>
-        <input type="submit" value="결과 보기"/></p>
-    </form>
+        <form action="/predict" method="POST">
+          <input type="text" name="input" placeholder="문구를 입력해주세요" oninput="checkLength(this)" required>
+          <br>
+          <input type="submit" value="결과 보기" />
+        </form>
 </div>
 
 <script src="{{ url_for('static', filename='js/index_script.js') }}"></script>  

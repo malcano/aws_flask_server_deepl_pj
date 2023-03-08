@@ -59,3 +59,9 @@ const carouselText = [
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   
+  function checkLength(input) {
+    if (input.value.length > 49) {
+      alert("49자 이하로 입력해주세요.");
+      input.value = input.value.substring(0, 49);
+    }
+  }
