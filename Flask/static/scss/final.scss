@@ -24,7 +24,7 @@ flex-wrap: wrap;
 }
 
 .btn {
-display: inline-block;
+display: inline-flex;
 font-family: 'Darker Grotesque', 'Nanum Gothic Coding', 'NanumBaReunJeongSin', sans-serif;
 border: none;
 outline: none;
@@ -132,8 +132,12 @@ margin: 0;
 	}
 	}
 }
+
 .images img {
 	width: 100%;
 	height: auto;
   }
-  
+
+a {
+	font-size: 1.5rem;
+}
