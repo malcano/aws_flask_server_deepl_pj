@@ -44,7 +44,7 @@ body {
    //box-sizing: border-box;
    
    @media (min-width: $md) {
-      padding: 100px 30px;
+      padding: 100px 0px;
    }
    
    h1 {
@@ -112,7 +112,7 @@ body {
       }
       
       @media (min-width: $lg) {
-         padding: 30px;
+         padding: 0px;
          font-size: 1em;
       }
    }
@@ -157,20 +157,6 @@ body {
          margin-bottom: 0.75em;
       }
       
-      .btn-primary {
-         color: #fff;
-         background: darken(tomato, 10%);
-         padding: 10px;
-         text-decoration:none;
-         border-radius: 3px;
-         display:inline-block;
-         @include transition;
-         
-         &:hover {
-            background: darken(tomato, 15%);
-         }
-         
-      }
    }
    
    .tiles {
@@ -199,18 +185,22 @@ body {
            display:block;
       }
    }
-   
-   .middle {
-      background: slategray;
-      z-index: 2;
-      padding:0;
-      
-      img {
-         width: 100%;
-         height: auto;
-         display:block;
-      }
-   }
+}
+.middle {
+   background: slategray;
+   z-index: 2;
+   padding:0px;
+   height: 100%;
+}
+.btn_image {
+   height: 100%;
+   width:100%;
+   display:block;
+}
+.mid_img {
+   height: 100%;
+   width:100%;
+   display: block;
 }
 
 @-webkit-keyframes bounce {

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>result page</title>
   {% assets "css/final.css" %}
   <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
   {% endassets %}
@@ -31,11 +31,11 @@
           <br>
           <br>
           <br>
-          <a href="https://kukka.kr/flower-pedia/" style="font-size: 1.5rem;">KUKKA에서 구매하기</a>
+          <a href="https://kukka.kr/flower-pedia/">KUKKA에서 구매하기</a>
         </div>
       </div>
       <div class='desc'>
-        <form action="/goodfeedback/{{input}}" method="POST" style="display:inline-flex" class="btn main">
+        <form action="/goodfeedback/{{input}}" method="POST" class="btn main">
           <input type="submit" value="좋아요!" class="like_input" onclick="doAction()"/></p>
           <script>
             function doAction() {
@@ -43,7 +43,7 @@
             }
           </script>
         </form>
-        <form action="/badfeedback/{{input}}" method="POST" style="display:inline-flex" class="btn side">
+        <form action="/badfeedback/{{input}}" method="POST" class="btn side">
           <input type="submit" value="별로예요" class="dislike_input" onclick="doAction()" /></p>
           <script>
             function doAction() {
