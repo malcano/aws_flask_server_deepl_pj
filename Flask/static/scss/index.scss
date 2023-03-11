@@ -78,19 +78,7 @@ body {
   input[type="submit"]:hover {
     background-color: #005a9e;
   }
-  // 미디어 쿼리를 사용하여 화면 크기에 따라 폰트 크기를 다르게 설정
-  // @media screen and (max-width: 1137px) {
-  //   $size: 2.4rem;
-  //   $header_size: 1.8rem;
-  // }
-  // @media screen and (max-width: 768px) {
-  //   $size: 2rem;
-  //   $header_size: 1rem;
-  // }
-  // @media screen and (max-width: 658px) {
-  //   $size: 1.2rem;
-  //   $header_size: 0.5rem;
-  // }
+
   @keyframes blink {
     0% {opacity: 1;}
     40% {opacity: 1;}
